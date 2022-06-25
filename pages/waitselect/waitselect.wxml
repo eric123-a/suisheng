@@ -1,0 +1,23 @@
+<view class="main">
+  <view class="title">
+    <view class="t">业务单号</view>
+    <view class="t">项目名称</view>
+  </view>
+  <view class="record" wx:for="{{record}}">
+    <view class="record-item">
+      <checkbox-group bindchange="change" data-item="{{item}}" data-index="{{index}}">
+        <checkbox checked="{{item.check}}"></checkbox>
+      </checkbox-group>
+      <view class="t">{{item.TaskCode}}</view>
+      <view class="t" bindtap="detail" data-item="{{item}}">{{item.ProjectName}}</view>
+    </view>
+  </view>
+</view>
+<van-goods-action>
+  <van-goods-action-icon icon="checked" text="全选" bind:click="checktotal" />
+  <van-dropdown-menu direction="up" active-color="#875e2c" custom-class="dropdown">
+    <van-dropdown-item value="{{ pay }}" options="{{ option1 }}" bind:change="pay" />
+  </van-dropdown-menu>
+  <van-goods-action-button text="認領" bind:click="select" />
+</van-goods-action>
+<van-dialog use-slot title="认领成功" show="{{ show }}"/>

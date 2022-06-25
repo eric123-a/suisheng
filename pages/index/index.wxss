@@ -1,0 +1,109 @@
+/* pages/hxlogin/hxlogin.wxss */
+page {
+  height: 100%
+}
+
+.v {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.v3 {
+  margin-top: 10%;
+  height: 80%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.v1 {
+
+  margin-top: 25%;
+  height: 20%;
+  width: 80%;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.v2 {
+  top: 30%;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.tx1 {
+  width: 64px;
+  height: 26px;
+  display: block;
+  overflow-wrap: break-word;
+  color: rgba(0, 0, 0, 1);
+  font-size: 18px;
+  letter-spacing: 2px;
+  font-family: Georgia, serif;
+  white-space: nowrap;
+  line-height: 26px;
+  text-align: center;
+  text-shadow: 3px 3px 10px rgba(255, 208, 82, 0.5);
+  margin-top: 2px;
+}
+
+.bt {
+  height: 8%;
+  border-radius: 6px;
+
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  display: flex;
+
+  overflow-wrap: break-word;
+  color: rgba(0, 0, 0, 1);
+  font-size: 18px;
+  letter-spacing: 2px;
+  font-family: Georgia, serif;
+  white-space: nowrap;
+  line-height: 30px;
+  text-align: center;
+
+  border: 2px solid #D7B87E;
+  color: #D7B87E;
+  background-color: white;
+}
+.wxbt{
+  height: 8%;
+  border-radius: 6px;
+
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  display: flex;
+
+  overflow-wrap: break-word;
+  color: rgba(0, 0, 0, 1);
+  font-size: 18px;
+  letter-spacing: 2px;
+  font-family: Georgia, serif;
+  white-space: nowrap;
+  line-height: 30px;
+  text-align: center;
+  border: none;
+  color: #D7B87E;
+  background-color: white;
+}
+.in {
+  width: 60%;
+  height: 80%;
+  position: relative;
+  border-radius: 6px;
+  border: 1px solid rgba(151, 151, 151, 1);
+}

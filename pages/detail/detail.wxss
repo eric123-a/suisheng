@@ -1,0 +1,17 @@
+/* pages/detail/detail.wxss */
+.icon{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.dialog{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.item{
+  height: 60px;
+  text-align: center;
+  font-size: medium;
+}

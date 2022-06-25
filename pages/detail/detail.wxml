@@ -1,0 +1,31 @@
+<!--pages/detail/detail.wxml-->
+<view class="detal">
+  <view></view>
+  <view wx:if="{{kind==2}}">
+    <van-button type="primary">认领</van-button>
+  </view>
+  <view wx:if="{{kind==1}}">
+    <view class="item">合同编号:{{detail.TaskCode}}</view>
+    <view class="item">合同金额:{{detail.AmountTotal}}</view>
+    <view class="item">委托单位:{{detail.ClientCompany}}</view>
+    <view class="item">委托代理人:{{detail.ClientContacter}}</view>
+    <view class="item">委托电话:{{detail.ClientPhone}}</view>
+    <view class="item">业务类别:{{detail.BusiCategoriesCode}}</view>
+    <view class="item">检测费用:{{detail.DetectionFee}}</view>
+    <view class="item">项目名称:{{detail.ProjectName}}</view>
+    <view class="item">客服人员:{{detail.ServiceStaffName}}</view>
+    <view class="icon">
+      <van-icon size='30px' name="https://s3.bmp.ovh/imgs/2022/04/15/ef64a21baa5444a5.png" />
+      <van-icon size='30px' bind:click='input' name="https://s3.bmp.ovh/imgs/2022/04/15/6e4aa95341a349b9.png" />
+      <van-icon size='30px' name="https://s3.bmp.ovh/imgs/2022/04/15/0e34489ee6a83777.png" />
+    </view>
+  </view>
+  <van-dialog use-slot title="上传资料" show="{{ show }}" show-cancel-button bind:confirm="uploadImage">
+    <view class="dialog">
+      <van-uploader deletable="{{ true }}" preview-size='100px' file-list="{{ fileList }}"
+        bind:after-read="uploader" />
+      <van-field value="{{ value }}" placeholder="图片标题"  bind:change="onChange" />
+    </view>
+  </van-dialog>
+</view>
+<van-dialog use-slot title="上传成功" show="{{ showseccess }}"></van-dialog>
