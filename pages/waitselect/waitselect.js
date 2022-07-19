@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    select:'未认领',
     record: [
       {
         id: '111123',
@@ -22,7 +23,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    api.getList().then((res) => {
+    api.getList('current').then((res) => {
       this.setData({
         record: res.data.data.datalist
       })
@@ -57,7 +58,29 @@ Page({
    * 生命周期函数--监听页面卸载
    */
 
-
+  changeselect:function(){
+     if(this.data.select=='未认领'){
+       api.getList('past').then((res) => {
+        this.setData({
+          select:'已认领',
+          record: res.data.data.datalist
+        })
+        for (let item of this.data.record) {
+          item.check = false
+        }
+      })
+     }else{
+      api.getList('current').then((res) => {
+        this.setData({
+          select:'未认领',
+          record: res.data.data.datalist
+        })
+        for (let item of this.data.record) {
+          item.check = false
+        }
+      })
+     }
+  },
   select: function () {
     this.data.record.map((item) => {
       if (item.check) {
@@ -93,7 +116,7 @@ Page({
   },
   detail: function (e) {
     wx.navigateTo({
-      url: `/pages/detail/detail?TaskId=${e.currentTarget.dataset.item.TaskId}`,
+      url: `/pages/detail/detail?TaskId=${e.currentTarget.dataset.item.TaskId}&select=${this.data.select}`,
     })
   }
 })

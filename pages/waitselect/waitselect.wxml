@@ -15,9 +15,7 @@
 </view>
 <van-goods-action>
   <van-goods-action-icon icon="checked" text="全选" bind:click="checktotal" />
-  <van-dropdown-menu direction="up" active-color="#875e2c" custom-class="dropdown">
-    <van-dropdown-item value="{{ pay }}" options="{{ option1 }}" bind:change="pay" />
-  </van-dropdown-menu>
+  <van-goods-action-icon icon="exchange" text="{{select}}" bind:click="changeselect" />
   <van-goods-action-button text="認領" bind:click="select" />
 </van-goods-action>
 <van-dialog use-slot title="认领成功" show="{{ show }}"/>

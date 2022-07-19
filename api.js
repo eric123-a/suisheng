@@ -1,4 +1,4 @@
-const host = 'https://58.48.189.211/detectionApi'
+const host = 'https://hbdac.ihb.ac.cn/detectionApi/'
 
 var app = getApp()
 
@@ -20,7 +20,7 @@ function login(data) {
   })
 
 }
-function getList() {
+function getList(data) {
   return new Promise((resolve, reject) => {
     wx.request({
       url: host + '/api/task/list',
@@ -32,7 +32,7 @@ function getList() {
       }, // 设置请求的 header
       data: {
         StatusCode: 'S020',
-        QueryMode: 'current',
+        QueryMode: data,
         pageno: 1,
         pagesize: 100
       },
@@ -101,10 +101,35 @@ function uploadimage(data) {
     })
   })
 }
+function gatherRecordInfo(data) {
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: host + '/api/flowSample/gatherRecordUpdate',
+      method: 'post',
+      header: {
+        'Content-Type': "application/json;charset=utf-8",
+        Accecpt: "application/json",
+        token: app.token
+      }, // 设置请求的 header
+      data: {
+        TaskId: data.TaskId,
+        GatherStartDate:data.GatherStartDate,
+        GatherEndDate:data.GatherEndDate,
+        GatherDays:data.GatherDays,
+        GatherInfoRecord:data.GatherInfoRecord,
+        GatherStaffs:data.GatherStaffs
+      },
+      success(res) {
+        resolve(res)
+      }
+    })
+  })
+}
 module.exports = {
   login,
   getList,
   getdetail,
   claimSamplingTask,
-  uploadimage
+  uploadimage,
+  gatherRecordInfo
 }

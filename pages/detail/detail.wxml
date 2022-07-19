@@ -14,17 +14,28 @@
     <view class="item">检测费用:{{detail.DetectionFee}}</view>
     <view class="item">项目名称:{{detail.ProjectName}}</view>
     <view class="item">客服人员:{{detail.ServiceStaffName}}</view>
-    <view class="icon">
-      <van-icon size='30px' name="https://s3.bmp.ovh/imgs/2022/04/15/ef64a21baa5444a5.png" />
+    <view wx:if="{{select}}" class="icon">
+      <van-icon size='30px' bind:click='edit' name="https://s3.bmp.ovh/imgs/2022/04/15/ef64a21baa5444a5.png" />
       <van-icon size='30px' bind:click='input' name="https://s3.bmp.ovh/imgs/2022/04/15/6e4aa95341a349b9.png" />
       <van-icon size='30px' name="https://s3.bmp.ovh/imgs/2022/04/15/0e34489ee6a83777.png" />
     </view>
   </view>
-  <van-dialog use-slot title="上传资料" show="{{ show }}" show-cancel-button bind:confirm="uploadImage">
+  <van-dialog  use-slot title="上传资料" show="{{ show }}" show-cancel-button bind:confirm="uploadImage">
     <view class="dialog">
       <van-uploader deletable="{{ true }}" preview-size='100px' file-list="{{ fileList }}"
         bind:after-read="uploader" />
       <van-field value="{{ value }}" placeholder="图片标题"  bind:change="onChange" />
+    </view>
+  </van-dialog>
+  <van-dialog  use-slot title="采样情况记录" show="{{ showEdit }}" show-cancel-button bind:confirm="record">
+    <view class="dialog" >
+      <van-field label="业务单号" value="{{ detail.TaskCode }}"  readonly  />
+      <van-field label="项目名称" value="{{ detail.ProjectName }}" readonly   />
+      <van-field label="采样日期" value="{{ GatherStarDate  }}"  bind:change="changeGatherStarDate" />
+      <van-field label="采样天数" value="{{ GatherDays }}"   bind:change="changeGatherDays" />
+      <van-field label="预计结束日期" value="{{ GatherEndDate }}"  bind:change="changeGatherEndDate" />
+      <van-field label="变更情况记录及原因" value="{{ GatherInfoRecord }}"  bind:change="changeGatherInfoRecord" />
+      <van-field label="现场采样人员描述" value="{{ GatherStaffs }}" bind:change="changeGatherStaffs" />
     </view>
   </van-dialog>
 </view>

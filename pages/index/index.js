@@ -51,7 +51,6 @@ Page({
         resultMap: res.resultMap
       })
       //   this.postUserInfo({ userInfo: this.data.userInfo, resultMap: this.data.resultMap })
-      console.log(898)
       if (res.data.flag == 0) {
         wx.navigateTo({
           url: '/pages/waitselect/waitselect',
