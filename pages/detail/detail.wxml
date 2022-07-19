@@ -27,7 +27,7 @@
       <van-field value="{{ value }}" placeholder="图片标题"  bind:change="onChange" />
     </view>
   </van-dialog>
-  <van-dialog  use-slot title="采样情况记录" show="{{ showEdit }}" show-cancel-button bind:confirm="record">
+  <van-dialog  use-slot title="采样情况记录" show="{{ edit }}" show-cancel-button bind:confirm="record">
     <view class="dialog" >
       <van-field label="业务单号" value="{{ detail.TaskCode }}"  readonly  />
       <van-field label="项目名称" value="{{ detail.ProjectName }}" readonly   />

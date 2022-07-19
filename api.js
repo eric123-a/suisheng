@@ -102,6 +102,7 @@ function uploadimage(data) {
   })
 }
 function gatherRecordInfo(data) {
+  console.log(data);
   return new Promise((resolve, reject) => {
     wx.request({
       url: host + '/api/flowSample/gatherRecordUpdate',

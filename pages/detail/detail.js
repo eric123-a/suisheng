@@ -56,9 +56,16 @@ Page({
   },
   record:function(){
    let data={
-      
+    TaskId:this.data.detail.TaskId,
+    GatherStarDate:this.data.GatherStarDate,
+    GatherDays:this.data.GatherDays,
+    GatherEndDate:this.data.GatherEndDate,
+    GatherInfoRecord:this.data.GatherInfoRecord,
+    GatherStaffs:this.data.GatherStaffs
     }
-      api.gatherRecordInfo().then()
+      api.gatherRecordInfo(data).then((res) => {
+        this.onLoad();
+      })
   },
   changeGatherStarDate: function (e) {
     this.setData({
