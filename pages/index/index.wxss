@@ -2,7 +2,13 @@
 page {
   height: 100%
 }
-
+.img {
+  height:100px;
+  width:400px;
+  display:flex;    /*设置为flex布局*/
+  justify-content: center; /*水平居中*/
+  align-items: center;
+}
 .v {
   display: flex;
   align-items: center;
@@ -86,7 +92,7 @@ page {
   align-items: center;
   position: relative;
 
-  display: flex;
+  display: none;
 
   overflow-wrap: break-word;
   color: rgba(0, 0, 0, 1);

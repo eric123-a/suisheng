@@ -11,7 +11,26 @@
   align-items: center;
 }
 .item{
-  height: 60px;
-  text-align: center;
+  height: 40px;
+  line-height: 40px;
   font-size: medium;
+  border: 1px solid gray;
+  padding:4px;
+  margin: 10px;
+}
+.title{
+  color: white;
+  background-color: steelblue;
+  font-size: x-large;
+  margin:10px;
+  text-align: center;
+}
+.list{
+  background-color: #F7F7F7;
+}
+.btn{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
 }

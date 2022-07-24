@@ -1,4 +1,7 @@
 <view class="v">
+  <view class="img">
+    <image mode="widthFix" src="../img/1.png"/>
+  </view>
   <view class="v1">
     <van-cell-group>
       <van-field value="{{ username }}" required clearable label="用户名" icon="question-o" placeholder="请输入用户名"

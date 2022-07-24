@@ -10,12 +10,13 @@ Page({
     record: [
       {
         id: '111123',
-        name: '名称'
+        ProjectName: '名称'
       }, {
         id: '111123',
         name: '名称'
       }
     ],
+    unrecord:[],
     show:false
   },
 
@@ -23,9 +24,18 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    api.getList('past').then((res) => {
+      this.setData({
+        select:'已认领',
+        record: res.data.data.datalist
+      })
+      for (let item of this.data.record) {
+        item.check = false
+      }
+    })
     api.getList('current').then((res) => {
       this.setData({
-        record: res.data.data.datalist
+        unrecord: res.data.data.datalist
       })
       for (let item of this.data.record) {
         item.check = false
@@ -44,7 +54,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+       this.onLoad()
   },
 
   /**
@@ -114,9 +124,14 @@ Page({
       record: select
     })
   },
+  undetail: function (e) {
+    wx.navigateTo({
+      url: `/pages/detail/detail?TaskId=${e.currentTarget.dataset.item.TaskId}&select=1`,
+    })
+  },
   detail: function (e) {
     wx.navigateTo({
-      url: `/pages/detail/detail?TaskId=${e.currentTarget.dataset.item.TaskId}&select=${this.data.select}`,
+      url: `/pages/detail/detail?TaskId=${e.currentTarget.dataset.item.TaskId}&select=2`,
     })
   }
 })
