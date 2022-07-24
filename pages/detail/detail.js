@@ -20,7 +20,10 @@ Page({
     GatherEndDate: '',
     GatherInfoRecord: '',
     GatherStaffs: '',
-    showEdit:false
+    showEdit: false,
+    TaskId: '',
+    selectseccess: false,
+    selectconfim: false,
   },
 
   /**
@@ -28,7 +31,10 @@ Page({
    */
   onLoad: function (options) {
     console.log(options)
-    if (options.select == '已认领') {
+    this.setData({
+      TaskId: options.TaskId
+    })
+    if (options.select == 2) {
       this.setData({
         select: true
       })
@@ -50,22 +56,22 @@ Page({
     })
   },
   edit: function () {
-       this.setData({
-         edit:true
-       })
+    this.setData({
+      edit: true
+    })
   },
-  record:function(){
-   let data={
-    TaskId:this.data.detail.TaskId,
-    GatherStarDate:this.data.GatherStarDate,
-    GatherDays:this.data.GatherDays,
-    GatherEndDate:this.data.GatherEndDate,
-    GatherInfoRecord:this.data.GatherInfoRecord,
-    GatherStaffs:this.data.GatherStaffs
+  record: function () {
+    let data = {
+      TaskId: this.data.detail.TaskId,
+      GatherStarDate: this.data.GatherStarDate,
+      GatherDays: this.data.GatherDays,
+      GatherEndDate: this.data.GatherEndDate,
+      GatherInfoRecord: this.data.GatherInfoRecord,
+      GatherStaffs: this.data.GatherStaffs
     }
-      api.gatherRecordInfo(data).then((res) => {
-        this.onLoad();
-      })
+    api.gatherRecordInfo(data).then((res) => {
+      this.onLoad();
+    })
   },
   changeGatherStarDate: function (e) {
     this.setData({
@@ -116,5 +122,20 @@ Page({
       })
     })
 
+  },
+  select: function () {
+    api.claimSamplingTask({ TaskId: this.data.TaskId }).then(res => {
+      wx.navigateTo({
+        url: `/pages/waitselect/waitselect`,
+      })
+    })
+    this.onLoad()
+    
+    //  api.claimSamplingTask({Taskid:})
+  },
+  selectconfim: function () {
+    this.setData({
+      selectconfim: true
+    })
   }
 })
