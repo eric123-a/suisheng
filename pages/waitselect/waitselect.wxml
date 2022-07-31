@@ -4,7 +4,7 @@
     <view class="title"> 未认领</view>
     <view class="record" wx:for="{{unrecord}}">
       <view class="record-item">
-        <view class="t" bindtap="detail" data-item="{{item}}">{{item.ProjectName}}</view>
+        <view class="t" bindtap="undetail" data-item="{{item}}">{{item.ProjectName}}</view>
         <view class="img"> <image src="../img/箭头.png" mode="widthFix" bindtap="undetail"></image></view>
       </view>
     </view>

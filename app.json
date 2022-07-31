@@ -4,7 +4,9 @@
     "pages/detail/detail",
     "pages/waitselect/waitselect",
     "pages/record/record",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/image",
+    "pages/imagePage/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

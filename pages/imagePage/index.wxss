@@ -1,0 +1,14 @@
+/* pages/imagePage/index.wxss */
+.main{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 5px;
+}
+.image{
+  width: 120px;
+  height: 120px;
+}
+.list{
+  background-color: green;
+}

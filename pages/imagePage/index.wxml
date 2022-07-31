@@ -1,0 +1,24 @@
+<view>
+  <view>
+    <button type="primary" bindtap="showdialog">上传图片</button>
+  </view>
+<view class="main">
+      <image wx:for="{{imageList}}" class="image" src="{{item.UrlPath}}" bindtap="clickImage"></image>
+  </view>
+</view>
+<van-dialog use-slot title="上传资料" show="{{ show }}" show-cancel-button bind:confirm="uploadImage">
+<view class="dialog">
+  <van-uploader deletable="{{ true }}" preview-size='100px' file-list="{{ fileList }}" bind:after-read="uploader" />
+  <van-field value="{{ Title }}" placeholder="名称" bind:change="onChangeTitle" />
+  <van-field value="{{ Place }}" placeholder="地点" bind:change="onChangePlace" />
+  <van-field value="{{ Longitude }}" placeholder="经度" bind:change="onChangeLongitude" />
+  <van-field value="{{ Latitude }}" placeholder="纬度" bind:change="onChangeLatitude" />
+  <van-field value="{{ Accuracy }}" placeholder="精度" bind:change="onChangeAccuracy" />
+  <van-field value="{{ Time }}" placeholder="时间" bind:change="onChangeTime" />
+</view>
+</van-dialog>>
+<van-dialog use-slot title="图片" show="{{ showImage }}" >
+<view class="dialog">
+  <image src='https://th.bing.com/th/id/OIP.kB-Ovasi0GW67-rmwnAcwAHaEo?pid=ImgDet&rs=1'></image>
+</view>
+</van-dialog>>

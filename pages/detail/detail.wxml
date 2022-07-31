@@ -7,8 +7,8 @@
   <view wx:if="{{kind==1}}" class="list">
     <view wx:if="{{select}}" class="icon">
       <van-icon size='30px' bind:click='edit' name="https://s3.bmp.ovh/imgs/2022/04/15/ef64a21baa5444a5.png" />
-      <van-icon size='30px' bind:click='input' name="https://s3.bmp.ovh/imgs/2022/04/15/6e4aa95341a349b9.png" />
-      <van-icon size='30px' name="https://s3.bmp.ovh/imgs/2022/04/15/0e34489ee6a83777.png" />
+      <van-icon size='30px' bind:click='image' name="https://s3.bmp.ovh/imgs/2022/04/15/6e4aa95341a349b9.png" />
+      <van-icon size='30px' bind:click='finsh' name="https://s3.bmp.ovh/imgs/2022/04/15/0e34489ee6a83777.png" />
     </view>
     <view class="item">合同编号:{{detail.TaskCode}}</view>
     <view class="item">委托单位:{{detail.ClientCompany}}</view>
@@ -43,4 +43,5 @@
 </view>
 <van-dialog use-slot title="上传成功" show="{{ showseccess }}"></van-dialog>
 <van-dialog use-slot title="认领成功" show="{{ selectseccess }}" />
-<van-dialog use-slot title="确认认领吗"  show="{{ edit }}" show-cancel-button bind:confirm="select" show="{{ selectconfim }}" />
+<van-dialog use-slot title="确认认领吗" show-cancel-button bind:confirm="select" show="{{ selectconfim }}" />
+<van-dialog use-slot title="确认完成采样结果提交么？"  show="{{ confirmfinsh }}" show-cancel-button bind:confirm="back"/>

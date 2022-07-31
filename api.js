@@ -83,7 +83,7 @@ function claimSamplingTask(data) {
 function uploadimage(data) {
   return new Promise((resolve, reject) => {
     wx.request({
-      url: host + '/api/flowSample/fileUploadWithTitle',
+      url: host + '/api/flowSample/fileUploadWithInfo',
       method: 'post',
       header: {
         'Content-Type': "application/json;charset=utf-8",
@@ -91,9 +91,14 @@ function uploadimage(data) {
         token: app.token
       }, // 设置请求的 header
       data: {
-        TaskId: data.TaskId,
-        file: data.url,
         Title: data.Title,
+       TaskId: data.TaskId,
+        file: data.fileUrl,
+        Place:data.Place,
+        Longitude:data.Longitude,
+        Latitude:data.Latitude,
+         Accuracy:data.Accuracy,
+         Time:data.Time
       },
       success(res) {
         resolve(res)
@@ -102,7 +107,6 @@ function uploadimage(data) {
   })
 }
 function gatherRecordInfo(data) {
-  console.log(data);
   return new Promise((resolve, reject) => {
     wx.request({
       url: host + '/api/flowSample/gatherRecordUpdate',
@@ -126,11 +130,31 @@ function gatherRecordInfo(data) {
     })
   })
 }
+function getImageList(data){
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: host + '/api/flowSample/fileList',
+      method: 'post',
+      header: {
+        'Content-Type': "application/json;charset=utf-8",
+        Accecpt: "application/json",
+        token: app.token
+      }, // 设置请求的 header
+      data: {
+        TaskId: data.TaskId,
+      },
+      success(res) {
+        resolve(res)
+      }
+    })
+  })
+}
 module.exports = {
   login,
   getList,
   getdetail,
   claimSamplingTask,
   uploadimage,
-  gatherRecordInfo
+  gatherRecordInfo,
+  getImageList
 }

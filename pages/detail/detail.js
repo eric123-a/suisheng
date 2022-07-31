@@ -137,5 +137,20 @@ Page({
     this.setData({
       selectconfim: true
     })
+  },
+  image: function(){
+    wx.navigateTo({
+      url: `/pages/imagePage/index?TaskId=${this.data.TaskId}`,
+    })
+  },
+  finsh:function(){
+    this.setData({
+      confirmfinsh:true
+    })
+  },
+  back:function(){
+    wx.navigateTo({
+      url: `/pages/waitselect/waitselect`,
+    })
   }
 })
