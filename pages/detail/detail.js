@@ -45,6 +45,15 @@ Page({
         detail: res.data.data
       })
     })
+    api.getInfo({ TaskId: options.TaskId }).then((res) => {
+      this.setData({
+        GatherDays: res.data.GatherDays,
+        GatherStarDate: res.data.GatherStarDate,
+        GatherEndDate: res.data.GatherEndDate,
+        GatherInfoRecord: res.data.GatherInfoRecord,
+        GatherStaffs: res.data.GatherStaffs
+      })
+    })
     //  api.getdetail({TaskId:})
   },
 
@@ -130,7 +139,7 @@ Page({
       })
     })
     this.onLoad()
-    
+
     //  api.claimSamplingTask({Taskid:})
   },
   selectconfim: function () {
@@ -138,19 +147,23 @@ Page({
       selectconfim: true
     })
   },
-  image: function(){
+  image: function () {
     wx.navigateTo({
       url: `/pages/imagePage/index?TaskId=${this.data.TaskId}`,
     })
   },
-  finsh:function(){
+  finsh: function () {
     this.setData({
-      confirmfinsh:true
-    })
+      confirmfinsh: true
+    });
+
   },
-  back:function(){
-    wx.navigateTo({
-      url: `/pages/waitselect/waitselect`,
+  back: function () {
+    api.endOption({ TaskId: this.data.TaskId }).then((res) => {
+      res.flag === 0 && wx.navigateTo({
+        url: `/pages/waitselect/waitselect`,
+      })
     })
+
   }
 })

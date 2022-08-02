@@ -149,6 +149,44 @@ function getImageList(data){
     })
   })
 }
+function getInfo(data){
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: host + '/api/flowSample/gatherRecordInfo',
+      method: 'post',
+      header: {
+        'Content-Type': "application/json;charset=utf-8",
+        Accecpt: "application/json",
+        token: app.token
+      }, // 设置请求的 header
+      data: {
+        TaskId: data.TaskId,
+      },
+      success(res) {
+        resolve(res)
+      }
+    })
+  })
+}
+function endOption(data){
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: host + '/api/task/nextStep',
+      method: 'post',
+      header: {
+        'Content-Type': "application/json;charset=utf-8",
+        Accecpt: "application/json",
+        token: app.token
+      }, // 设置请求的 header
+      data: {
+        TaskId: data.TaskId,
+      },
+      success(res) {
+        resolve(res)
+      }
+    })
+  })
+}
 module.exports = {
   login,
   getList,
@@ -156,5 +194,7 @@ module.exports = {
   claimSamplingTask,
   uploadimage,
   gatherRecordInfo,
-  getImageList
+  getImageList,
+  getInfo,
+  endOption
 }
