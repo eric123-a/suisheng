@@ -33,7 +33,7 @@
     <view class="dialog">
       <van-field label="业务单号" value="{{ detail.TaskCode }}" readonly />
       <van-field label="项目名称" value="{{ detail.ProjectName }}" readonly />
-      <van-field label="采样日期" value="{{ GatherStarDate  }}" bind:change="changeGatherStarDate" />
+      <van-field label="采样日期" value="{{ GatherStarDate  }}" bind:change="changeGatherStartDate" />
       <van-field label="采样天数" value="{{ GatherDays }}" bind:change="changeGatherDays" />
       <van-field label="预计结束日期" value="{{ GatherEndDate }}" bind:change="changeGatherEndDate" />
       <van-field label="变更情况记录及原因" value="{{ GatherInfoRecord }}" bind:change="changeGatherInfoRecord" />

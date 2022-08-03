@@ -8,7 +8,7 @@
 </view>
 <van-dialog use-slot title="上传资料" show="{{ show }}" show-cancel-button bind:confirm="uploadImage">
 <view class="dialog">
-  <van-uploader deletable="{{ true }}" preview-size='100px' file-list="{{ fileList }}" bind:after-read="uploader" />
+  <van-uploader bind:after-read="afterRead" bind:delete="deleteClick" multiple="{{false}}" deletable="{{ true }}" preview-size='100px' file-list="{{ fileList }}"  />
   <van-field value="{{ Title }}" placeholder="名称" bind:change="onChangeTitle" />
   <van-field value="{{ Place }}" placeholder="地点" bind:change="onChangePlace" />
   <van-field value="{{ Longitude }}" placeholder="经度" bind:change="onChangeLongitude" />

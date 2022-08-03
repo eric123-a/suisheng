@@ -15,7 +15,7 @@ Page({
     fileUrl: '',
     showseccess: false,
     select: false,
-    GatherStarDate: '',
+    GatherStartDate: '',
     GatherDays: '',
     GatherEndDate: '',
     GatherInfoRecord: '',
@@ -46,12 +46,13 @@ Page({
       })
     })
     api.getInfo({ TaskId: options.TaskId }).then((res) => {
+      console.log(233,res.data)
       this.setData({
-        GatherDays: res.data.GatherDays,
-        GatherStarDate: res.data.GatherStarDate,
-        GatherEndDate: res.data.GatherEndDate,
-        GatherInfoRecord: res.data.GatherInfoRecord,
-        GatherStaffs: res.data.GatherStaffs
+        GatherDays: res.data.data.GatherDays,
+        GatherStartDate: res.data.data.GatherStartDate,
+        GatherEndDate: res.data.data.GatherEndDate,
+        GatherInfoRecord: res.data.data.GatherInfoRecord,
+        GatherStaffs: res.data.data.GatherStaffs
       })
     })
     //  api.getdetail({TaskId:})
@@ -72,19 +73,20 @@ Page({
   record: function () {
     let data = {
       TaskId: this.data.detail.TaskId,
-      GatherStarDate: this.data.GatherStarDate,
+      GatherStartDate: this.data.GatherStartDate,
       GatherDays: this.data.GatherDays,
       GatherEndDate: this.data.GatherEndDate,
       GatherInfoRecord: this.data.GatherInfoRecord,
       GatherStaffs: this.data.GatherStaffs
     }
+    console.log(23,data)
     api.gatherRecordInfo(data).then((res) => {
       this.onLoad();
     })
   },
-  changeGatherStarDate: function (e) {
+  changeGatherStartDate: function (e) {
     this.setData({
-      GatherStarDate: e.detail
+      GatherStartDate: e.detail
     })
   },
   changeGatherDays: function (e) {
