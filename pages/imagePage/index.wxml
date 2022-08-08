@@ -3,7 +3,7 @@
     <button type="primary" bindtap="showdialog">上传图片</button>
   </view>
 <view class="main">
-      <image wx:for="{{imageList}}" class="image" src="{{item.UrlPath}}" bindtap="clickImage"></image>
+      <image wx:for="{{imageList}}" class="image" src="{{item.UrlPath}}" bindtap="clickImage" data-src="{{item.UrlPath}}"></image>
   </view>
 </view>
 <van-dialog use-slot title="上传资料" show="{{ show }}" show-cancel-button bind:confirm="uploadImage">
@@ -19,6 +19,6 @@
 </van-dialog>>
 <van-dialog use-slot title="图片" show="{{ showImage }}" >
 <view class="dialog">
-  <image src='https://th.bing.com/th/id/OIP.kB-Ovasi0GW67-rmwnAcwAHaEo?pid=ImgDet&rs=1'></image>
+  <image src='{{imagesrc}}'></image>
 </view>
 </van-dialog>>

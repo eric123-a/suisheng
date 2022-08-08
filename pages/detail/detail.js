@@ -24,6 +24,9 @@ Page({
     TaskId: '',
     selectseccess: false,
     selectconfim: false,
+    optionseccess:false,
+    optionserror:false,
+    errormsg:''
   },
 
   /**
@@ -46,7 +49,7 @@ Page({
       })
     })
     api.getInfo({ TaskId: options.TaskId }).then((res) => {
-      console.log(233,res.data)
+      console.log(233, res.data)
       this.setData({
         GatherDays: res.data.data.GatherDays,
         GatherStartDate: res.data.data.GatherStartDate,
@@ -79,7 +82,7 @@ Page({
       GatherInfoRecord: this.data.GatherInfoRecord,
       GatherStaffs: this.data.GatherStaffs
     }
-    console.log(23,data)
+    console.log(23, data)
     api.gatherRecordInfo(data).then((res) => {
       this.onLoad();
     })
@@ -162,9 +165,20 @@ Page({
   },
   back: function () {
     api.endOption({ TaskId: this.data.TaskId }).then((res) => {
-      res.flag === 0 && wx.navigateTo({
-        url: `/pages/waitselect/waitselect`,
-      })
+      if (res.data.flag === 0) {
+        this.setData({
+          optionseccess:true
+        })
+        res.flag === 0 && wx.navigateTo({
+          url: `/pages/waitselect/waitselect`,
+        })
+      }else{
+        console.log()
+        this.setData({
+          optionserror:true,
+          errormsg:res.data.msg
+        })
+      }
     })
 
   }

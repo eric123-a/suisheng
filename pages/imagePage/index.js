@@ -246,5 +246,12 @@ Page({
         wx.hideLoading();//停止loading
     },
 })
+  },
+  clickImage(event){
+    console.log(event.currentTarget.dataset.src)
+    this.setData({
+      showImage:true,
+      imagesrc:event.currentTarget.dataset.src
+    })
   }
 })
