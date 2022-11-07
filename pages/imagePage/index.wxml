@@ -3,7 +3,7 @@
     <button type="primary" bindtap="showdialog">上传图片</button>
   </view>
 <view class="main">
-      <image wx:for="{{imageList}}" class="image" src="{{item.UrlPath}}" bindtap="clickImage" data-src="{{item.UrlPath}}"></image>
+      <image wx:for="{{imageList}}" class="image" src="{{item.UrlPath}}" bindtap="clickImage" data-src="{{item}}" ></image>
   </view>
 </view>
 <van-dialog use-slot title="上传资料" show="{{ show }}" show-cancel-button bind:confirm="uploadImage">
@@ -17,7 +17,7 @@
   <van-field value="{{ Time }}" placeholder="时间" bind:change="onChangeTime" />
 </view>
 </van-dialog>>
-<van-dialog use-slot title="图片" show="{{ showImage }}" >
+<van-dialog use-slot title="图片" show="{{ showImage }}" show-cancel-button cancelButtonText="删除图片" bind:cancel="deleteImage">
 <view class="dialog">
   <image src='{{imagesrc}}'></image>
 </view>

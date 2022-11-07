@@ -19,7 +19,9 @@ Page({
     fileUrl: '',
     showImage: false,
     imageSrc: '',
-    fileList: []
+    fileList: [],
+    fileId:'',
+    file:[],
   },
 
   /**
@@ -88,26 +90,63 @@ Page({
   },
   uploadImage() {
 
-    api.uploadimage({
+    let Authorization = wx.getStorageSync('key')
+    let headers = {
+      Accecpt: "application/json",
+      "content-type": "multipart/form-data",
+      token: app.token
+    }
+    let data = {
       Title: this.data.Title,
       TaskId: this.data.TaskId,
-      file: this.data.fileUrl,
+      fileUrl: this.data.file,
       Place: this.data.Place,
       Longitude: this.data.Longitude,
       Latitude: this.data.Latitude,
       Accuracy: this.data.Accuracy,
-      Time: this.data.Time
-    }).then(res => {
-      this.setData({
-        showseccess: true
-      })
-      api.getImageList({ TaskId: this.data.TaskId }).then((res) => {
-        console.log(res.data.data)
-        this.setData({
+      Time: this.data.Time,
+    }
+    if (Authorization) {
+      headers.Authorization = 'Bearer ' + Authorization
+  }
+ 
+  let that = this;
+     wx.uploadFile({
+    url: "https://hbdac.ihb.ac.cn/detectionApi/api/flowSample/fileUploadWithInfo",
+    method: 'POST',
+    header: headers,
+    filePath: this.data.file[0],
+    formData: data,
+    name: 'image',
+    // 成功回调
+    success(res) {
+      api.getImageList({ TaskId: that.data.TaskId }).then((res) => {
+        that.setData({
           imageList: res.data.data
         })
       })
-    })
+    },
+})
+    // api.uploadimage({
+    //   Title: this.data.Title,
+    //   TaskId: this.data.TaskId,
+    //   fileUrl: this.data.file,
+    //   Place: this.data.Place,
+    //   Longitude: this.data.Longitude,
+    //   Latitude: this.data.Latitude,
+    //   Accuracy: this.data.Accuracy,
+    //   Time: this.data.Time,
+    // }).then(res => {
+    //   this.setData({
+    //     showseccess: true
+    //   })
+    //   api.getImageList({ TaskId: this.data.TaskId }).then((res) => {
+    //     console.log(res.data.data)
+    //     this.setData({
+    //       imageList: res.data.data
+    //     })
+    //   })
+    // })
 
   },
   showdialog: function () {
@@ -164,7 +203,7 @@ Page({
         filePath: this.data.fileUrl,
         Title: this.data.Title,
         TaskId: this.data.TaskId,
-        file: this.data.fileUrl,
+        file: this.data.file,
         Place: this.data.Place,
         Longitude: this.data.Longitude,
         Latitude: this.data.Latitude,
@@ -201,7 +240,6 @@ Page({
     })
     const { file } = event.detail;//获取图片详细信息
     let that = this;//防止this指向问题
-    // 设置请求头，根据项目需求变换
     let Authorization = wx.getStorageSync('key')
     let headers = {
       Accecpt: "application/json",
@@ -221,37 +259,57 @@ Page({
     if (Authorization) {
       headers.Authorization = 'Bearer ' + Authorization
   }
-  wx.uploadFile({
-    url: "https://hbdac.ihb.ac.cn/detectionApi/api/flowSample/fileUploadWithInfo",
-    method: 'POST',
-    header: headers,
-    filePath: file.url,
-    formData: data,
-    name: 'image',
-    // 成功回调
-    success(res) {
-        // JSON.parse()方法是将JSON格式字符串转换为js对象
-        var result = JSON.parse(res.data);
-        // 上传完成需要更新 fileList
-        const {fileList = []} = that.data;
-        // 将图片信息添加到fileList数字中
-        fileList.push({
-            ...file,
-            url: result.data
-        });
-        // 更新存放图片的数组
-        that.setData({
-            fileList
-        });
-        wx.hideLoading();//停止loading
-    },
-})
+
+ this.setData({
+  fileList:[...this.data.fileList,file],
+  file:[...this.data.file,file.url]
+});
+wx.hideLoading();//停止loading
+//   wx.uploadFile({
+//     url: "https://hbdac.ihb.ac.cn/detectionApi/api/flowSample/fileUploadWithInfo",
+//     method: 'POST',
+//     header: headers,
+//     filePath: file.url,
+//     formData: data,
+//     name: 'image',
+//     // 成功回调
+//     success(res) {
+//         // JSON.parse()方法是将JSON格式字符串转换为js对象
+//         var result = JSON.parse(res.data);
+//         console.log(6666,result)
+//         // 上传完成需要更新 fileList
+//         const {fileList = []} = that.data;
+//         // 将图片信息添加到fileList数字中
+//         fileList.push({
+//             ...file,
+//             url: result.data
+//         });
+//         // 更新存放图片的数组
+//         that.setData({
+//             fileList
+//         });
+//         wx.hideLoading();//停止loading
+//     },
+// })
+  },
+  deleteImage(){
+   api.deleteImage({FildId:this.data.fileId}).then((res) =>{
+    // this.onLoad({TaskId:this.setData.TaskId});
+    api.getImageList({ TaskId: this.data.TaskId }).then((res) => {
+      console.log(res.data.data)
+      this.setData({
+        imageList: res.data.data
+      })
+    })
+   })
   },
   clickImage(event){
-    console.log(event.currentTarget.dataset.src)
+    console.log(event.currentTarget.dataset)
     this.setData({
       showImage:true,
-      imagesrc:event.currentTarget.dataset.src
+      imagesrc:event.currentTarget.dataset.src.UrlPath,
+      fileId:event.currentTarget.dataset.src.FileID,
     })
-  }
+  },
+  
 })

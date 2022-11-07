@@ -31,8 +31,8 @@ function getList(data) {
         token: app.token
       }, // 设置请求的 header
       data: {
-        StatusCode: 'S020',
-        QueryMode: data,
+        StatusCode: data.code,
+        QueryMode: data.mode,
         pageno: 1,
         pagesize: 100
       },
@@ -61,6 +61,26 @@ function getdetail(data) {
     })
   })
 }
+function deleteImage(data){
+  console.log(4545,data)
+  return new Promise((resolve,reject) => {
+    wx.request({
+      url: host + '/api/flowSample/fileRemove',
+      method: 'post',
+      header: {
+        'Content-Type': "application/json;charset=utf-8",
+        Accecpt: "application/json",
+        token: app.token
+      }, // 设置请求的 header
+      data: {
+        FildId: data.FildId
+      },
+      success(res) {
+        resolve(res)
+      }
+    })
+  })
+}
 function claimSamplingTask(data) {
   return new Promise((resolve, reject) => {
     wx.request({
@@ -81,6 +101,7 @@ function claimSamplingTask(data) {
   })
 }
 function uploadimage(data) {
+  console.log(76767,data)
   return new Promise((resolve, reject) => {
     wx.request({
       url: host + '/api/flowSample/fileUploadWithInfo',
@@ -92,7 +113,7 @@ function uploadimage(data) {
       }, // 设置请求的 header
       data: {
         Title: data.Title,
-       TaskId: data.TaskId,
+        TaskId: data.TaskId,
         file: data.fileUrl,
         Place:data.Place,
         Longitude:data.Longitude,
@@ -196,5 +217,6 @@ module.exports = {
   gatherRecordInfo,
   getImageList,
   getInfo,
-  endOption
+  endOption,
+  deleteImage
 }

@@ -24,7 +24,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    api.getList('past').then((res) => {
+    api.getList({mode:'past',code:'S025'}).then((res) => {
       this.setData({
         select:'已认领',
         record: res.data.data.datalist
@@ -33,7 +33,7 @@ Page({
         item.check = false
       }
     })
-    api.getList('current').then((res) => {
+    api.getList({mode:'current',code:'S020'}).then((res) => {
       this.setData({
         unrecord: res.data.data.datalist
       })
@@ -70,7 +70,7 @@ Page({
 
   changeselect:function(){
      if(this.data.select=='未认领'){
-       api.getList('past').then((res) => {
+       api.getList({mode:'past',code:'S025'}).then((res) => {
         this.setData({
           select:'已认领',
           record: res.data.data.datalist
@@ -80,7 +80,7 @@ Page({
         }
       })
      }else{
-      api.getList('current').then((res) => {
+      api.getList({mode:'current',code:'S020'}).then((res) => {
         this.setData({
           select:'未认领',
           record: res.data.data.datalist

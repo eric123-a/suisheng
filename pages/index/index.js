@@ -27,6 +27,10 @@ Page({
         canIUseGetUserProfile: true
       })
     }
+    this.setData({
+      user: wx.getStorageSync("strloginUser"),
+      password: wx.getStorageSync("strloginpassword"),
+    })
   },
   bindKeyInput(e) {
     this.setData({
@@ -43,8 +47,10 @@ Page({
       user: this.data.user,
       password: this.data.password
     }
+    console.log(data);
     api.login(data).then(res => {
-
+      wx.setStorageSync("strloginUser",this.data.user);
+      wx.setStorageSync("strloginpassword",this.data.password);
       app.token = res.data.data
 
       this.setData({

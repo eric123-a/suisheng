@@ -49,7 +49,6 @@ Page({
       })
     })
     api.getInfo({ TaskId: options.TaskId }).then((res) => {
-      console.log(233, res.data)
       this.setData({
         GatherDays: res.data.data.GatherDays,
         GatherStartDate: res.data.data.GatherStartDate,
@@ -173,7 +172,6 @@ Page({
           url: `/pages/waitselect/waitselect`,
         })
       }else{
-        console.log()
         this.setData({
           optionserror:true,
           errormsg:res.data.msg

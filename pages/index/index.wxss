@@ -27,7 +27,7 @@ page {
 }
 
 .v1 {
-
+  font-size: medium;
   margin-top: 25%;
   height: 20%;
   width: 80%;
