@@ -109,7 +109,6 @@ Page({
     if (Authorization) {
       headers.Authorization = 'Bearer ' + Authorization
   }
- 
   let that = this;
      wx.uploadFile({
     url: "https://hbdac.ihb.ac.cn/detectionApi/api/flowSample/fileUploadWithInfo",
@@ -120,6 +119,15 @@ Page({
     name: 'image',
     // 成功回调
     success(res) {
+      that.setData({
+        Title:'',
+        Place:'',
+        Longitude:'',
+        Latitude:'',
+        Accuracy:'',
+        Time:'',
+        fileList:[]
+      })
       api.getImageList({ TaskId: that.data.TaskId }).then((res) => {
         that.setData({
           imageList: res.data.data

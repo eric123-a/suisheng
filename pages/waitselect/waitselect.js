@@ -33,7 +33,7 @@ Page({
         item.check = false
       }
     })
-    api.getList({mode:'current',code:'S020'}).then((res) => {
+    api.getList({mode:'current',code:'S020'}).then((res) => {xx
       this.setData({
         unrecord: res.data.data.datalist
       })
