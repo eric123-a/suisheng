@@ -73,7 +73,7 @@ function deleteImage(data){
         token: app.token
       }, // 设置请求的 header
       data: {
-        FildeId: data.FildId
+        FileId: data.FildId
       },
       success(res) {
         resolve(res)
