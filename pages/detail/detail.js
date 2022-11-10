@@ -118,7 +118,6 @@ Page({
     })
   },
   uploader(event) {
-    console.log(999, event.detail)
     const { file } = event.detail;
     this.data.fileList.push({ url: file.url })
     // 当设置 mutiple 为 true 时, file 为数组格式，否则为对象格式

@@ -24,7 +24,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    api.getList({mode:'past',code:'S025'}).then((res) => {
+    api.getList({mode:'current',code:'S025'}).then((res) => {
       this.setData({
         select:'已认领',
         record: res.data.data.datalist
@@ -70,7 +70,7 @@ Page({
 
   changeselect:function(){
      if(this.data.select=='未认领'){
-       api.getList({mode:'past',code:'S025'}).then((res) => {
+       api.getList({mode:'current',code:'S025'}).then((res) => {
         this.setData({
           select:'已认领',
           record: res.data.data.datalist
